@@ -32,4 +32,11 @@ p {
 header {
     border: 5px outset green;
 }
+* {
+    outline: 1px yellow dashed;
+}
+aside {
+    border: 1px solid black;
+    border-radius: 10px;
+}
     
