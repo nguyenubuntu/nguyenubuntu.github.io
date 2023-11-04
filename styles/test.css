@@ -26,9 +26,10 @@ li {
     margin-right: 8px;
 }
 p {
-    padding-top: 16px;
-    padding-right: 12px;
-    padding-bottom: 16px;
-    padding-left: 20px;
+    padding: 16px 12px;
+    border: 4px inset blue;
+}
+header {
+    border: 5px outset green;
 }
     
