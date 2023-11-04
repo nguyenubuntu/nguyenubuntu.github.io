@@ -21,3 +21,7 @@ caption {
 label {
     display: block;
 }
+li {
+    display: inline;
+    margin-right: 8px;
+}
