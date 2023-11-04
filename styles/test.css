@@ -39,4 +39,8 @@ aside {
     border: 1px solid black;
     border-radius: 10px;
 }
+div {
+    border: 3px outset darkgreen;
+    border-radius: 10px 20px;
+    }    
     
