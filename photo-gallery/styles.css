@@ -54,7 +54,7 @@ h2 {
     color: aliceblue;
 }
 
-.btn:cover {
+.btn:hover {
     color: aliceblue;
     background-color: green;
     cursor: pointer;
