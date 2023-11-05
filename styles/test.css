@@ -42,5 +42,10 @@ aside {
 div {
     border: 3px outset darkgreen;
     border-radius: 10px 20px;
-    }    
+    }
+nav {
+    margin-top: 8px;
+    padding: 12px;
+    border: 1px solid cyan;
+}
     
