@@ -124,19 +124,23 @@
             width: 60%;
             margin: 20px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 192, 203, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
             position: relative;
             color: black;
+            text-align: center;
+            border: 5px solid #ff69b4;
         }
         #messageDisplay {
             margin-top: 20px;
-            padding: 15px;
-            background-color: #ffccdd;
-            border-radius: 5px;
-            font-size: 18px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+            border-radius: 10px;
+            font-size: 20px;
             font-weight: bold;
+            color: white;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
         }
         .flower {
             position: absolute;
@@ -165,10 +169,11 @@
         function createFlowers() {
             for (let i = 0; i < 10; i++) {
                 let flower = document.createElement("img");
-                flower.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Red_rose.svg/2048px-Red_rose.svg.png";
+                flower.src = "https://www.freeiconspng.com/uploads/rose-png-9.png";
                 flower.classList.add("flower");
                 flower.style.left = Math.random() * window.innerWidth + "px";
                 flower.style.animationDuration = (Math.random() * 5 + 3) + "s";
+                flower.style.top = "-50px";
                 document.body.appendChild(flower);
                 setTimeout(() => flower.remove(), 8000);
             }
