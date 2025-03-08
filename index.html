@@ -1,11 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
+    <title>Game Ngày Quốc tế Phụ nữ 8/3</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffccdd;
+            font-family: Arial, sans-serif;
+        }
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 80vh;
+            overflow: hidden;
+            border: 2px solid #ff6699;
+        }
+        .flower {
+            position: absolute;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .bonus {
+            position: absolute;
+            font-size: 40px;
+            color: gold;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    <h1>Chúc Mừng Ngày Quốc tế Phụ nữ 8/3! 🌸</h1>
+    <p>Nhấp vào hoa để ghi điểm! Thu thập quà đặc biệt 🎁 để nhận thêm điểm!</p>
+    <h2>Điểm: <span id="score">0</span></h2>
+    <div id="gameContainer"></div>
     
+    <audio id="collectSound" src="https://www.fesliyanstudios.com/play-mp3/4383"></audio>
+    <audio id="bonusSound" src="https://www.fesliyanstudios.com/play-mp3/4384"></audio>
+
+    <script>
+        let score = 0;
+        const collectSound = document.getElementById("collectSound");
+        const bonusSound = document.getElementById("bonusSound");
+
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.innerHTML = "🌸";
+            flower.classList.add("flower");
+            flower.style.left = Math.random() * 90 + "vw";
+            flower.style.top = "0px";
+
+            flower.addEventListener("click", function() {
+                score++;
+                document.getElementById("score").innerText = score;
+                collectSound.play();
+                flower.remove();
+            });
+
+            document.getElementById("gameContainer").appendChild(flower);
+
+            let fallInterval = setInterval(() => {
+                let top = parseInt(flower.style.top);
+                if (top >= window.innerHeight - 50) {
+                    clearInterval(fallInterval);
+                    flower.remove();
+                } else {
+                    flower.style.top = top + 5 + "px";
+                }
+            }, 100);
+        }
+
+        function createBonus() {
+            const bonus = document.createElement("div");
+            bonus.innerHTML = "🎁";
+            bonus.classList.add("bonus");
+            bonus.style.left = Math.random() * 90 + "vw";
+            bonus.style.top = "0px";
+
+            bonus.addEventListener("click", function() {
+                score += 5;
+                document.getElementById("score").innerText = score;
+                bonusSound.play();
+                bonus.remove();
+            });
+
+            document.getElementById("gameContainer").appendChild(bonus);
+
+            let fallInterval = setInterval(() => {
+                let top = parseInt(bonus.style.top);
+                if (top >= window.innerHeight - 50) {
+                    clearInterval(fallInterval);
+                    bonus.remove();
+                } else {
+                    bonus.style.top = top + 5 + "px";
+                }
+            }, 100);
+        }
+
+        setInterval(createFlower, 1000);
+        setInterval(createBonus, 5000);
+    </script>
 </body>
 </html>
