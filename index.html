@@ -112,7 +112,7 @@
     <style>
         body {
             text-align: center;
-            background-image: url('https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg');
+            background-image: url('https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg'); /* Đồng cỏ xanh */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -143,27 +143,16 @@
             box-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
             position: relative;
         }
-        .heart {
+        .flower {
             position: absolute;
-            width: 30px;
-            height: 30px;
-            animation: floatHeart 5s infinite;
+            width: 40px;
+            height: 40px;
+            opacity: 0.8;
+            animation: fall linear infinite;
         }
-        @keyframes floatHeart {
-            0% { transform: translateY(0px) scale(1); opacity: 1; }
-            50% { transform: translateY(-100px) scale(1.2); opacity: 0.8; }
-            100% { transform: translateY(-200px) scale(1); opacity: 0; }
-        }
-        .animated-bird {
-            position: absolute;
-            top: 10%;
-            left: -10%;
-            width: 80px;
-            animation: flyBird 8s linear infinite;
-        }
-        @keyframes flyBird {
-            0% { left: -10%; }
-            100% { left: 110%; }
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -174,22 +163,24 @@
         <div id="messageDisplay">💌 Chúc vợ yêu Thu Thảo luôn tươi trẻ, hạnh phúc, khoẻ mạnh và sự nghiệp thăng hoa. 💕</div>
     </div>
     
-    <audio id="music" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" loop autoplay></audio>
+    <audio id="music" src="https://www.bensound.com/bensound-music/bensound-sweet.mp3" loop autoplay></audio>
     <button onclick="toggleMusic()">🎵 Bật/Tắt Nhạc</button>
     
     <script>
-        function createHearts() {
-            let heart = document.createElement("img");
-            heart.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Red_heart_icon.svg/768px-Red_heart_icon.svg.png";
-            heart.classList.add("heart");
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.top = "90%";
-            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
+        function createFlowers() {
+            for (let i = 0; i < 10; i++) {
+                let flower = document.createElement("img");
+                flower.src = "https://www.freeiconspng.com/uploads/rose-png-9.png";
+                flower.classList.add("flower");
+                flower.style.left = Math.random() * window.innerWidth + "px";
+                flower.style.animationDuration = (Math.random() * 5 + 3) + "s";
+                flower.style.top = "-50px";
+                document.body.appendChild(flower);
+                setTimeout(() => flower.remove(), 8000);
+            }
         }
-        setInterval(createHearts, 1000);
-        
+        setInterval(createFlowers, 2000);
+
         function toggleMusic() {
             let music = document.getElementById("music");
             if (music.paused) {
@@ -199,7 +190,5 @@
             }
         }
     </script>
-    
-    <img class="animated-bird" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Animated_bird_flying.gif" alt="Flying Bird">
 </body>
 </html>
