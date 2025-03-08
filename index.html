@@ -112,12 +112,13 @@
     <style>
         body {
             text-align: center;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3d/Hoi_An_old_town%2C_Vietnam.jpg');
+            background-image: url('https://cdn.pixabay.com/photo/2016/11/18/15/47/background-1839237_1280.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             font-family: Arial, sans-serif;
             color: white;
+            overflow: hidden;
         }
         #cardContainer {
             width: 60%;
@@ -129,28 +130,6 @@
             position: relative;
             color: black;
         }
-        textarea {
-            width: 100%;
-            height: 150px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ff6699;
-            border-radius: 5px;
-            resize: none;
-        }
-        button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #ff6699;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #ff3366;
-        }
         #messageDisplay {
             margin-top: 20px;
             padding: 15px;
@@ -158,60 +137,43 @@
             border-radius: 5px;
             font-size: 18px;
             font-weight: bold;
-            position: relative;
         }
         .flower {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 30px;
+            height: 30px;
             opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-50px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <h1>Thiệp Chúc Mừng 8/3 Cho Vợ Yêu Thu Thảo 💖</h1>
     <div id="cardContainer">
-        <h2>Viết lời chúc của bạn:</h2>
-        <textarea id="messageInput">Chúc vợ yêu mãi luôn tươi trẻ, hạnh phúc, khoẻ mạnh và sự nghiệp thăng hoa.</textarea>
-        <br>
-        <button onclick="showMessage()">Gửi Thiệp</button>
-        <div id="messageDisplay"></div>
+        <h2>Lời chúc dành tặng vợ yêu:</h2>
+        <div id="messageDisplay">💌 Chúc vợ yêu Thu Thảo luôn tươi trẻ, hạnh phúc, khoẻ mạnh và sự nghiệp thăng hoa. 💕</div>
     </div>
 
-    <audio id="music" src="https://www.myinstants.com/media/sounds/nhu-doa-hoa-nho.mp3" loop autoplay></audio>
+    <audio id="music" src="https://www.bensound.com/bensound-music/bensound-sweet.mp3" loop autoplay></audio>
     <button onclick="toggleMusic()">🎵 Bật/Tắt Nhạc</button>
 
     <script>
-        function showMessage() {
-            const message = document.getElementById("messageInput").value;
-            if (message.trim() === "") {
-                alert("Hãy nhập lời chúc của bạn!");
-                return;
-            }
-            document.getElementById("messageDisplay").innerText = `💌 Lời chúc của bạn: "${message}" 💕`;
-            createFlowers();
-        }
-
         function createFlowers() {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 20; i++) {
                 let flower = document.createElement("img");
                 flower.src = "https://cdn.pixabay.com/photo/2017/01/31/17/00/rose-2020421_1280.png";
                 flower.classList.add("flower");
                 flower.style.left = Math.random() * window.innerWidth + "px";
-                flower.style.top = "-50px";
+                flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
                 document.body.appendChild(flower);
-
-                let fallInterval = setInterval(() => {
-                    let top = parseInt(flower.style.top);
-                    if (top >= window.innerHeight - 50) {
-                        clearInterval(fallInterval);
-                        flower.remove();
-                    } else {
-                        flower.style.top = top + 5 + "px";
-                    }
-                }, 100);
+                setTimeout(() => flower.remove(), 5000);
             }
         }
+        setInterval(createFlowers, 1000);
 
         function toggleMusic() {
             let music = document.getElementById("music");
