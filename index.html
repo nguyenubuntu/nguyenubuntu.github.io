@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -100,6 +100,122 @@
 
         setInterval(createFlower, 1000);
         setInterval(createBonus, 5000);
+    </script>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp 8/3 Tặng Vợ Yêu</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffe6f2;
+            font-family: Arial, sans-serif;
+        }
+        #cardContainer {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ff6699;
+            border-radius: 5px;
+            resize: none;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff6699;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff3366;
+        }
+        #messageDisplay {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffccdd;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+        }
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thiệp Chúc Mừng 8/3 Cho Vợ Yêu Thu Thảo 💖</h1>
+    <div id="cardContainer">
+        <h2>Viết lời chúc của bạn:</h2>
+        <textarea id="messageInput" placeholder="Gửi lời chúc ngọt ngào đến vợ yêu..."></textarea>
+        <br>
+        <button onclick="showMessage()">Gửi Thiệp</button>
+        <div id="messageDisplay"></div>
+    </div>
+
+    <audio id="music" src="https://www.myinstants.com/media/sounds/nhu-doa-hoa-nho.mp3" loop></audio>
+    <button onclick="toggleMusic()">🎵 Bật/Tắt Nhạc</button>
+
+    <script>
+        function showMessage() {
+            const message = document.getElementById("messageInput").value;
+            if (message.trim() === "") {
+                alert("Hãy nhập lời chúc của bạn!");
+                return;
+            }
+            document.getElementById("messageDisplay").innerText = `💌 Lời chúc của bạn: "${message}" 💕`;
+            createFlowers();
+        }
+
+        function createFlowers() {
+            for (let i = 0; i < 10; i++) {
+                let flower = document.createElement("img");
+                flower.src = "https://cdn.pixabay.com/photo/2017/01/31/17/00/rose-2020421_1280.png";
+                flower.classList.add("flower");
+                flower.style.left = Math.random() * window.innerWidth + "px";
+                flower.style.top = "-50px";
+                document.body.appendChild(flower);
+
+                let fallInterval = setInterval(() => {
+                    let top = parseInt(flower.style.top);
+                    if (top >= window.innerHeight - 50) {
+                        clearInterval(fallInterval);
+                        flower.remove();
+                    } else {
+                        flower.style.top = top + 5 + "px";
+                    }
+                }, 100);
+            }
+        }
+
+        function toggleMusic() {
+            let music = document.getElementById("music");
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
     </script>
 </body>
 </html>
