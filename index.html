@@ -112,7 +112,7 @@
     <style>
         body {
             text-align: center;
-            background-image: url('https://cdn.pixabay.com/photo/2016/11/18/15/47/background-1839237_1280.jpg');
+            background-image: url('https://cdn.pixabay.com/photo/2015/09/18/19/03/africa-949949_1280.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -140,14 +140,14 @@
         }
         .flower {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             opacity: 0.8;
             animation: fall linear infinite;
         }
         @keyframes fall {
-            0% { transform: translateY(-50px); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -158,22 +158,22 @@
         <div id="messageDisplay">💌 Chúc vợ yêu Thu Thảo luôn tươi trẻ, hạnh phúc, khoẻ mạnh và sự nghiệp thăng hoa. 💕</div>
     </div>
 
-    <audio id="music" src="https://www.bensound.com/bensound-music/bensound-sweet.mp3" loop autoplay></audio>
+    <audio id="music" src="https://cdn.pixabay.com/audio/2023/07/26/audio_6f63cf7b56.mp3" loop autoplay></audio>
     <button onclick="toggleMusic()">🎵 Bật/Tắt Nhạc</button>
 
     <script>
         function createFlowers() {
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 10; i++) {
                 let flower = document.createElement("img");
-                flower.src = "https://cdn.pixabay.com/photo/2017/01/31/17/00/rose-2020421_1280.png";
+                flower.src = "https://cdn.pixabay.com/photo/2014/04/02/10/47/flower-303322_1280.png";
                 flower.classList.add("flower");
                 flower.style.left = Math.random() * window.innerWidth + "px";
-                flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                flower.style.animationDuration = (Math.random() * 5 + 3) + "s";
                 document.body.appendChild(flower);
-                setTimeout(() => flower.remove(), 5000);
+                setTimeout(() => flower.remove(), 8000);
             }
         }
-        setInterval(createFlowers, 1000);
+        setInterval(createFlowers, 2000);
 
         function toggleMusic() {
             let music = document.getElementById("music");
