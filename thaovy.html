@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Dạy Tiếng Việt</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        .game-container { margin: 20px auto; max-width: 500px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px gray; }
+        .letter { font-size: 48px; font-weight: bold; cursor: pointer; display: inline-block; padding: 10px; margin: 5px; background: lightblue; border-radius: 5px; }
+        .word-box { min-height: 50px; border: 2px dashed gray; padding: 10px; margin: 10px; background: white; }
+        canvas { border: 2px solid black; background: white; margin-top: 10px; }
+        .image-container img { width: 100px; height: 100px; margin: 5px; }
+        .sentence-box { margin-top: 20px; padding: 10px; background: lightyellow; border-radius: 5px; }
+        .sentence { font-size: 20px; margin: 10px; cursor: pointer; color: darkblue; }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h2>Dạy Chữ Cái</h2>
+        <div id="letters"></div>
+        <h2>Dạy Ghép Vần</h2>
+        <div id="word-box" class="word-box"></div>
+        <h2>Dạy Viết Chữ</h2>
+        <canvas id="drawCanvas" width="400" height="200"></canvas>
+        <h2>Hình Ảnh Minh Họa</h2>
+        <div class="image-container" id="image-container"></div>
+        <h2>Dạy Đọc Câu</h2>
+        <div id="sentence-box" class="sentence-box"></div>
+    </div>
+
+    <script>
+        // Dạy chữ cái với âm thanh
+        const letters = ['A', 'Ă', 'Â', 'B', 'C', 'D', 'Đ', 'E', 'Ê', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'Ô', 'Ơ', 'P', 'Q', 'R', 'S', 'T', 'U', 'Ư', 'V', 'X', 'Y'];
+        letters.forEach(letter => {
+            let audio = new Audio(`sounds/${letter}.mp3`);
+            let letterDiv = $(`<div class='letter' draggable='true' ondragstart='drag(event)'>${letter}</div>`);
+            letterDiv.click(() => audio.play());
+            $('#letters').append(letterDiv);
+        });
+        
+        // Dạy ghép vần
+        $('#word-box').on('dragover', function(event) {
+            event.preventDefault();
+        });
+        $('#word-box').on('drop', function(event) {
+            event.preventDefault();
+            let letter = event.originalEvent.dataTransfer.getData("text");
+            $(this).append(`<span class='letter'>${letter}</span>`);
+        });
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.innerText);
+        }
+        
+        // Dạy viết chữ
+        const canvas = document.getElementById('drawCanvas');
+        const ctx = canvas.getContext('2d');
+        let drawing = false;
+        canvas.addEventListener('mousedown', () => drawing = true);
+        canvas.addEventListener('mouseup', () => drawing = false);
+        canvas.addEventListener('mousemove', (event) => {
+            if (!drawing) return;
+            ctx.fillStyle = 'black';
+            ctx.fillRect(event.offsetX, event.offsetY, 5, 5);
+        });
+
+        // Hình ảnh minh họa
+        const images = [
+            { src: 'images/apple.png', word: 'Táo' },
+            { src: 'images/banana.png', word: 'Chuối' },
+            { src: 'images/cat.png', word: 'Mèo' }
+        ];
+        images.forEach(img => {
+            $('#image-container').append(`<img src='${img.src}' alt='${img.word}' title='${img.word}'>`);
+        });
+
+        // Dạy đọc câu với âm thanh
+        const sentences = [
+            { text: 'Chào bạn!', sound: 'sounds/chao-ban.mp3' },
+            { text: 'Tôi tên là...', sound: 'sounds/toi-ten-la.mp3' },
+            { text: 'Bạn khỏe không?', sound: 'sounds/ban-khoe-khong.mp3' },
+            { text: 'Hôm nay là một ngày đẹp trời!', sound: 'sounds/ngay-dep-troi.mp3' }
+        ];
+        sentences.forEach(sentence => {
+            let audio = new Audio(sentence.sound);
+            let sentenceDiv = $(`<div class='sentence'>${sentence.text}</div>`);
+            sentenceDiv.click(() => audio.play());
+            $('#sentence-box').append(sentenceDiv);
+        });
+    </script>
+</body>
+</html>
