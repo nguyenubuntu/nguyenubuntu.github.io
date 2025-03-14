@@ -31,10 +31,10 @@
     </div>
 
     <script>
-        // Dạy chữ cái với âm thanh
+        // Dạy chữ cái với âm thanh từ URL mẫu
         const letters = ['A', 'Ă', 'Â', 'B', 'C', 'D', 'Đ', 'E', 'Ê', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'Ô', 'Ơ', 'P', 'Q', 'R', 'S', 'T', 'U', 'Ư', 'V', 'X', 'Y'];
         letters.forEach(letter => {
-            let audio = new Audio(`sounds/${letter}.mp3`);
+            let audio = new Audio(`https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3`);
             let letterDiv = $(`<div class='letter' draggable='true' ondragstart='drag(event)'>${letter}</div>`);
             letterDiv.click(() => audio.play());
             $('#letters').append(letterDiv);
@@ -65,22 +65,22 @@
             ctx.fillRect(event.offsetX, event.offsetY, 5, 5);
         });
 
-        // Hình ảnh minh họa
+        // Hình ảnh minh họa từ URL mẫu
         const images = [
-            { src: 'images/apple.png', word: 'Táo' },
-            { src: 'images/banana.png', word: 'Chuối' },
-            { src: 'images/cat.png', word: 'Mèo' }
+            { src: 'https://via.placeholder.com/100', word: 'Táo' },
+            { src: 'https://via.placeholder.com/100', word: 'Chuối' },
+            { src: 'https://via.placeholder.com/100', word: 'Mèo' }
         ];
         images.forEach(img => {
             $('#image-container').append(`<img src='${img.src}' alt='${img.word}' title='${img.word}'>`);
         });
 
-        // Dạy đọc câu với âm thanh
+        // Dạy đọc câu với âm thanh từ URL mẫu
         const sentences = [
-            { text: 'Chào bạn!', sound: 'sounds/chao-ban.mp3' },
-            { text: 'Tôi tên là...', sound: 'sounds/toi-ten-la.mp3' },
-            { text: 'Bạn khỏe không?', sound: 'sounds/ban-khoe-khong.mp3' },
-            { text: 'Hôm nay là một ngày đẹp trời!', sound: 'sounds/ngay-dep-troi.mp3' }
+            { text: 'Chào bạn!', sound: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3' },
+            { text: 'Tôi tên là...', sound: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3' },
+            { text: 'Bạn khỏe không?', sound: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3' },
+            { text: 'Hôm nay là một ngày đẹp trời!', sound: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3' }
         ];
         sentences.forEach(sentence => {
             let audio = new Audio(sentence.sound);
