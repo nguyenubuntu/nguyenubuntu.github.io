@@ -60,3 +60,17 @@ function renderProgress() {
   output += '</ul>';
   document.getElementById('progress-list').innerHTML = output;
 }
+function startListening(correctWord) {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = 'vi-VN';
+  recognition.start();
+
+  recognition.onresult = (event) => {
+    const spoken = event.results[0][0].transcript.trim();
+    if (spoken.toLowerCase() === correctWord.toLowerCase()) {
+      alert("🎉 Đúng rồi!");
+    } else {
+      alert(`Bạn vừa nói: ${spoken}. Thử lại nhé!`);
+    }
+  };
+}
