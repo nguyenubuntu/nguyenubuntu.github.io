@@ -1,194 +1,31 @@
-<!--<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Ngày Quốc tế Phụ nữ 8/3</title>
-    <style>
-        body {
-            text-align: center;
-            background-color: #ffccdd;
-            font-family: Arial, sans-serif;
-        }
-        #gameContainer {
-            position: relative;
-            width: 100vw;
-            height: 80vh;
-            overflow: hidden;
-            border: 2px solid #ff6699;
-        }
-        .flower {
-            position: absolute;
-            font-size: 30px;
-            cursor: pointer;
-        }
-        .bonus {
-            position: absolute;
-            font-size: 40px;
-            color: gold;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <h1>Chúc Mừng Ngày Quốc tế Phụ nữ 8/3! 🌸</h1>
-    <p>Nhấp vào hoa để ghi điểm! Thu thập quà đặc biệt 🎁 để nhận thêm điểm!</p>
-    <h2>Điểm: <span id="score">0</span></h2>
-    <div id="gameContainer"></div>
-    
-    <audio id="collectSound" src="https://www.fesliyanstudios.com/play-mp3/4383"></audio>
-    <audio id="bonusSound" src="https://www.fesliyanstudios.com/play-mp3/4384"></audio>
-
-    <script>
-        let score = 0;
-        const collectSound = document.getElementById("collectSound");
-        const bonusSound = document.getElementById("bonusSound");
-
-        function createFlower() {
-            const flower = document.createElement("div");
-            flower.innerHTML = "🌸";
-            flower.classList.add("flower");
-            flower.style.left = Math.random() * 90 + "vw";
-            flower.style.top = "0px";
-
-            flower.addEventListener("click", function() {
-                score++;
-                document.getElementById("score").innerText = score;
-                collectSound.play();
-                flower.remove();
-            });
-
-            document.getElementById("gameContainer").appendChild(flower);
-
-            let fallInterval = setInterval(() => {
-                let top = parseInt(flower.style.top);
-                if (top >= window.innerHeight - 50) {
-                    clearInterval(fallInterval);
-                    flower.remove();
-                } else {
-                    flower.style.top = top + 5 + "px";
-                }
-            }, 100);
-        }
-
-        function createBonus() {
-            const bonus = document.createElement("div");
-            bonus.innerHTML = "🎁";
-            bonus.classList.add("bonus");
-            bonus.style.left = Math.random() * 90 + "vw";
-            bonus.style.top = "0px";
-
-            bonus.addEventListener("click", function() {
-                score += 5;
-                document.getElementById("score").innerText = score;
-                bonusSound.play();
-                bonus.remove();
-            });
-
-            document.getElementById("gameContainer").appendChild(bonus);
-
-            let fallInterval = setInterval(() => {
-                let top = parseInt(bonus.style.top);
-                if (top >= window.innerHeight - 50) {
-                    clearInterval(fallInterval);
-                    bonus.remove();
-                } else {
-                    bonus.style.top = top + 5 + "px";
-                }
-            }, 100);
-        }
-
-        setInterval(createFlower, 1000);
-        setInterval(createBonus, 5000);
-    </script>
-</body>
-</html>-->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thiệp 8/3 Tặng Vợ Yêu</title>
-    <style>
-        body {
-            text-align: center;
-            background-image: url('https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg'); /* Đồng cỏ xanh */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            font-family: 'Pacifico', cursive;
-            color: white;
-            overflow: hidden;
-        }
-        #cardContainer {
-            width: 70%;
-            margin: 20px auto;
-            padding: 30px;
-            background-color: rgba(255, 182, 193, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(255, 105, 180, 0.7);
-            position: relative;
-            color: black;
-            text-align: center;
-            border: 8px solid #ff1493;
-        }
-        #messageDisplay {
-            margin-top: 20px;
-            padding: 30px;
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
-            border-radius: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            color: white;
-            box-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
-            position: relative;
-        }
-        .flower {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            opacity: 0.8;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Học Tiếng Việt - Chân Trời Sáng Tạo</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Thiệp Chúc Mừng 8/3 Cho Vợ Yêu Thu Thảo 💖</h1>
-    <div id="cardContainer">
-        <h2>Lời chúc dành tặng vợ yêu:</h2>
-        <div id="messageDisplay">💌 Chúc vợ yêu Thu Thảo luôn tươi trẻ, hạnh phúc, khoẻ mạnh và sự nghiệp thăng hoa. 💕</div>
-    </div>
-    
-    <audio id="music" src="https://www.bensound.com/bensound-music/bensound-sweet.mp3" loop autoplay></audio>
-    <button onclick="toggleMusic()">🎵 Bật/Tắt Nhạc</button>
-    
-    <script>
-        function createFlowers() {
-            for (let i = 0; i < 10; i++) {
-                let flower = document.createElement("img");
-                flower.src = "https://www.freeiconspng.com/uploads/rose-png-9.png";
-                flower.classList.add("flower");
-                flower.style.left = Math.random() * window.innerWidth + "px";
-                flower.style.animationDuration = (Math.random() * 5 + 3) + "s";
-                flower.style.top = "-50px";
-                document.body.appendChild(flower);
-                setTimeout(() => flower.remove(), 8000);
-            }
-        }
-        setInterval(createFlowers, 2000);
+  <header>
+    <h1>🐰 Học Tiếng Việt Lớp 1</h1>
+    <p>Theo chương trình Chân Trời Sáng Tạo</p>
+  </header>
 
-        function toggleMusic() {
-            let music = document.getElementById("music");
-            if (music.paused) {
-                music.play();
-            } else {
-                music.pause();
-            }
-        }
-    </script>
+  <section id="lesson-selection">
+    <h2>Chọn bài học</h2>
+    <button onclick="loadLesson('lesson1')">📖 Bài 1: Em Bé</button>
+    <button onclick="loadLesson('lesson2')">📖 Bài 2: Cái Bàn</button>
+  </section>
+
+  <section id="lesson-container">
+    <!-- Bài học sẽ load ở đây -->
+  </section>
+
+  <footer>
+    <button onclick="renderProgress()">📊 Xem tiến độ</button>
+    <div id="progress-list"></div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
