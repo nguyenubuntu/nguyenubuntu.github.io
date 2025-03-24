@@ -1,0 +1,16 @@
+{
+  "lesson_id": "lesson1",
+  "title": "Bài 1: Em Bé",
+  "letters": ["E", "M", "B", "É"],
+  "words": [
+    { "word": "Em", "image": "" },
+    { "word": "Bé", "image": "" }
+  ],
+  "quiz": [
+    {
+      "question": "Chữ nào là E?",
+      "choices": ["A", "E", "O"],
+      "answer": "E"
+    }
+  ]
+}
